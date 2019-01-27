@@ -1,0 +1,18 @@
+;
+; Version description file for plugin @@ Next Generation CMS
+;
+ 
+ID: ggg_recaptcha
+Name: јнти бот
+Version: 0.5
+Acts: core, comments, comments:add, action.ppages.feedback, feedback, feedback:post
+File: ggg_recaptcha.php
+Config: config.php
+Type: plugin
+Description: «ащита форм сайта от интернет-ботов с reCAPTCHA v3. ѕредназначен дл€ плагинов comments, feedback и регистрационной формы.
+Author: rusiq
+Author_URI: https://github.com/russsiq
+Title: reCAPTCHA v3
+Information: «ащита форм сайта от интернет-ботов с reCAPTCHA v3. ѕредназначен дл€ плагинов comments, feedback и регистрационной формы.
+Preinstall: no
+Library: lib; lib/common.php
