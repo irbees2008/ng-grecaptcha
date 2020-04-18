@@ -6,6 +6,7 @@ if (! defined('NGCMS')) {
 }
 
 global $userROW;
+
 if (is_array($userROW)) {
     return true;
 }
@@ -48,7 +49,7 @@ pluginRegisterFilter('core.registerUser', 'ggg_recaptcha', new GGGRecaptchaCore(
 
 if (getPluginStatusActive('comments')) {
     loadPluginLibrary('comments', 'lib');
-    
+
     class GGGRecaptchaComments extends FilterComments
     {
         protected $recaptcha;
@@ -68,13 +69,13 @@ if (getPluginStatusActive('comments')) {
             return $this->recaptcha->verifying();
         }
     }
-    
+
     pluginRegisterFilter('comments', 'ggg_recaptcha', new GGGRecaptchaComments($ggg_recaptcha));
 }
 
 if (getPluginStatusActive('feedback')) {
     loadPluginLibrary('feedback', 'common');
-    
+
     class GGGRecaptchaFeedback extends FeedbackFilter
     {
         protected $recaptcha;
@@ -94,6 +95,6 @@ if (getPluginStatusActive('feedback')) {
             return $this->recaptcha->verifying();
         }
     }
-    
+
     pluginRegisterFilter('feedback', 'ggg_recaptcha', new GGGRecaptchaFeedback($ggg_recaptcha));
 }
