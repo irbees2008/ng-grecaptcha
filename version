@@ -2,22 +2,22 @@
 ; Version description file for plugin @@ Next Generation CMS
 ;
 
-ID: ggg_recaptcha
+ID: ng-grecaptcha
 Type: plugin
-Version: 0.5
+Version: 0.6.0
 
-File: ggg_recaptcha.php
+File: ng-grecaptcha.php
 Config: config.php
 ; Install: install.php
 ; Deinstall: deinstall.php
 Preinstall: default_no
 Acts: core, comments, comments:add, action.ppages.feedback, feedback, feedback:post
-Library: lib; lib/common.php
+Library: autoload; vendor/autoload.php
 
 Title: reCAPTCHA v3
 Name: јнти бот
-Description: «ащита форм сайта от интернет-ботов с reCAPTCHA v3. ѕредназначен дл€ плагинов comments, feedback и регистрационной формы.
-Information: «ащита форм сайта от интернет-ботов с reCAPTCHA v3. ѕредназначен дл€ плагинов comments, feedback и регистрационной формы.
+Description: «ащита форм сайта от интернет-ботов с Google reCAPTCHA v3. ѕредназначен дл€ плагинов comments, feedback и регистрационной формы.
+Information: «ащита форм сайта от интернет-ботов с Google reCAPTCHA v3. ѕредназначен дл€ плагинов comments, feedback и регистрационной формы.
 
 Author: rusiq
 Author_URI: https://github.com/russsiq

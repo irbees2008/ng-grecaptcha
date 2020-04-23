@@ -1,78 +1,128 @@
 <?php
 
-// Protect against hack attempts.
-if (!defined('NGCMS')) {
+// Защита от попыток взлома.
+if (! defined('NGCMS')) {
     die('HAL');
 }
 
-// Duplicate var.
-$plugin = 'ggg_recaptcha';
+// Дублирование глобальных переменных.
+$plugin = 'ng-grecaptcha';
 
-// Preload config file.
+// Подгрузка библиотек-файлов плагина.
 plugins_load_config();
-LoadPluginLang($plugin, 'backend', '', '', ':');
+LoadPluginLang($plugin, 'config', '', '', ':');
 
-// Prepare var.
-$scores = [];
-foreach (range(0.1, 0.9, 0.1) as $score) {
-	$scores["$score"] = $score;
-}
+// Используем функции из пространства `Plugins`.
+use function Plugins\dd;
+use function Plugins\setting;
+use function Plugins\trans;
 
-// Fill configuration parameters.
+// Подготовка переменных.
+$range = range(0.1, 0.9, 0.1);
+$scores = array_combine($range, $range);
+
+// Заполнить параметры конфигурации.
 $cfg = [];
+
+// Описание плагина.
 array_push($cfg, [
-    'descr' => $lang[$plugin.':description'],
-]);
-array_push($cfg, [
-    'name' => 'site_key',
-    'title' => $lang[$plugin.':site_key'],
-    'descr' => $lang[$plugin.':site_key#descr'],
-    'type' => 'input',
-    'html_flags' => 'style="min-width:260px;text-align:right;" autocomplete="off" required',
-    'value' => pluginGetVariable($plugin, 'site_key') ?: null,
-]);
-array_push($cfg, [
-    'name' => 'secret_key',
-    'title' => $lang[$plugin.':secret_key'],
-    'descr' => $lang[$plugin.':secret_key#descr'],
-    'type' => 'input',
-    'html_flags' => 'style="min-width:260px;text-align:right;" autocomplete="off" required',
-    'value' => pluginGetVariable($plugin, 'secret_key') ?: null,
-]);
-array_push($cfg, [
-    'name' => 'score',
-    'title' => $lang[$plugin.':score'],
-    'descr' => $lang[$plugin.':score#descr'],
-    'type' => 'select',
-    'values' => $scores,
-	'value' => (double) (pluginGetVariable($plugin, 'score') ?: 0.5),
+    'descr' => trans($plugin.':description'),
 ]);
 
+// Ключи reCAPTCHA.
 array_push($cfg, [
-    'name' => 'modal_support',
-    'title' => $lang[$plugin.':modal_support'],
-    'descr' => $lang[$plugin.':modal_support#descr'],
-    'type' => 'select',
-    'values' => [
-        '0' => $lang['noa'],
-        '1' => $lang['yesa'],
+    'mode' => 'group',
+    'title' => trans($plugin.':group_keys'),
+    'entries' => [
+        [
+            'name' => 'site_key',
+            'title' => trans($plugin.':site_key'),
+            'descr' => trans($plugin.':site_key#descr'),
+            'type' => 'input',
+            'html_flags' => 'style="min-width:260px;text-align:right;" autocomplete="off" required',
+            'value' => setting($plugin, 'site_key', null),
+
+        ], [
+            'name' => 'secret_key',
+            'title' => trans($plugin.':secret_key'),
+            'descr' => trans($plugin.':secret_key#descr'),
+            'type' => 'input',
+            'html_flags' => 'style="min-width:260px;text-align:right;" autocomplete="off" required',
+            'value' => setting($plugin, 'secret_key', null),
+
+        ],
+
     ],
-    'value' => intval(pluginGetVariable($plugin, 'modal_support'))
+
 ]);
 
-// If submit requested, do config save.
-if ('commit' == $_REQUEST['action']) {
-	// Check incomming variables.
+// Основные настройки.
+array_push($cfg, [
+    'mode' => 'group',
+    'title' => trans($plugin.':group_main'),
+    'entries' => [
+        [
+            'name' => 'score',
+            'title' => trans($plugin.':score'),
+            'descr' => trans($plugin.':score#descr'),
+            'type' => 'select',
+            'values' => $scores,
+            'value' => (float) setting($plugin, 'score', 0.5),
+
+        ],  [
+            'name' => 'guests_only',
+            'title' => trans($plugin.':guests_only'),
+            'descr' => trans($plugin.':guests_only#descr'),
+            'type' => 'select',
+            'values' => [
+                trans('noa'),
+                trans('yesa'),
+
+            ],
+            'value' => (int) setting($plugin, 'guests_only', true),
+
+        ],
+
+    ],
+
+]);
+
+// Настройки отображения.
+array_push($cfg, [
+    'mode' => 'group',
+    'title' => trans($plugin.':group_view'),
+    'entries' => [
+        [
+            'name' => 'modal_support',
+            'title' => trans($plugin.':modal_support'),
+            'descr' => trans($plugin.':modal_support#descr'),
+            'type' => 'select',
+            'values' => [
+                trans('noa'),
+                trans('yesa'),
+
+            ],
+            'value' => (int) setting($plugin, 'modal_support', false),
+
+        ],
+
+    ],
+
+]);
+
+// Если была отправлена форма, то сохраняем настройки.
+if ('commit' === $_REQUEST['action']) {
+    // Валидация входящих параметров.
     if (empty($site_key = trim(secure_html($_POST['site_key']))) or empty($secret_key = trim(secure_html($_POST['secret_key'])))) {
         msg([
-			'type' => 'error',
-			'text' => $lang[$plugin.':msg.not_complete'],
-		]);
+            'type' => 'error',
+            'text' => trans($plugin.':msg.not_complete'),
+        ]);
 
         return generate_config_page($plugin, $cfg);
     }
 
-	commit_plugin_config_changes($plugin, $cfg);
+    commit_plugin_config_changes($plugin, $cfg);
 
     return print_commit_complete($plugin);
 }
