@@ -30,7 +30,7 @@ $grecaptcha = new Plugins\GRecaptcha\GRecaptcha();
 
 // Если включена поддержка модальных окон.
 if (setting('ng-grecaptcha', 'modal_support', false)) {
-    $grecaptcha->htmlVars();
+    $grecaptcha->registerHtmlVars();
 }
 
 pluginRegisterFilter('core.registerUser', 'ng-grecaptcha', new Plugins\GRecaptcha\Filters\GRecaptchaCoreFilter($grecaptcha));

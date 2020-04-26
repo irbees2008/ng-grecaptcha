@@ -21,7 +21,7 @@ class GRecaptchaFeedbackFilter extends FeedbackFilter
 
     public function onShow($formID, $formStruct, $formData, &$tvars)
     {
-        return $this->recaptcha->htmlVars();
+        return $this->recaptcha->registerHtmlVars();
     }
 
     public function onProcessEx($formID, $formStruct, $formData, $flagHTML, &$tVars, &$tResult)

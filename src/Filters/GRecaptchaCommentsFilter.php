@@ -21,7 +21,7 @@ class GRecaptchaCommentsFilter extends FilterComments
 
     public function addCommentsForm($newsID, &$tvars)
     {
-        return $this->recaptcha->htmlVars();
+        return $this->recaptcha->registerHtmlVars();
     }
 
     public function addComments($userRec, $newsRec, &$tvars, &$SQL)

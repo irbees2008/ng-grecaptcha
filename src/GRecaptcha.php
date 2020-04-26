@@ -132,7 +132,7 @@ class GRecaptcha
         return $this;
     }
 
-    public function htmlVars()
+    public function registerHtmlVars()
     {
         if (empty($this->siteKey)) {
             return false;
