@@ -161,7 +161,7 @@ class GRecaptcha
     public function verifying()
     {
         try {
-            $this->checkNecessaryVariables();
+            $this->ensureNecessaryVariables();
 
             $verified = $this->touchAnswer();
 
@@ -264,7 +264,7 @@ class GRecaptcha
         );
     }
 
-    protected function checkNecessaryVariables()
+    protected function ensureNecessaryVariables()
     {
         if (empty($this->siteKey)) {
             throw new InvalidArgumentException('empty-site-key');
