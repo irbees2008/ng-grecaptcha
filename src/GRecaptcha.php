@@ -121,12 +121,13 @@ class GRecaptcha
         $this->secretKey = trim(secure_html(setting($this->plugin, 'secret_key', null)));
         $this->score = (float) setting($this->plugin, 'score', 0.5);
 
-        $this->templatePath = $this->findTemplates(
-            $this->localsource = setting($this->plugin, 'localsource', 0)
-        );
-
         // Теперь зададим переданные через форму.
         $this->userToken = trim(secure_html($_POST['g-recaptcha-response'])) ?? null;
+
+        // Определить все пути к шаблонов.
+        $this->defineTemplatePaths(
+            (bool) setting($this->plugin, 'localsource', 0)
+        );
 
         return $this;
     }
