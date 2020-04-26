@@ -22,7 +22,7 @@ use function Plugins\setting;
 use function Plugins\trans;
 
 /**
- * Защита форм сайта от интернет-ботов с Google reCAPTCHA v3
+ * Защита форм сайта от интернет-ботов с Google reCAPTCHA v3.
  */
 class GRecaptcha
 {
