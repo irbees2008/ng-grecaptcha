@@ -124,7 +124,7 @@ class GRecaptcha
         // Теперь зададим переданные через форму.
         $this->userToken = trim(secure_html($_POST['g-recaptcha-response'])) ?? null;
 
-        // Определить все пути к шаблонов.
+        // Определить все пути к шаблонам.
         $this->defineTemplatePaths(
             (bool) setting($this->plugin, 'localsource', 0)
         );
