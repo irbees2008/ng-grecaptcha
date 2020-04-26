@@ -87,27 +87,25 @@ array_push($cfg, [
 
 ]);
 
-// Настройки отображения.
+// Формирование переменной `htmlvars`.
 array_push($cfg, [
     'mode' => 'group',
-    'title' => trans($plugin.':group_view'),
+    'title' => trans($plugin.':group_htmlvars'),
     'entries' => [
         [
-            'name' => 'modal_support',
-            'title' => trans($plugin.':modal_support'),
-            'descr' => trans($plugin.':modal_support#descr'),
+            'name' => 'use_js',
+            'title' => trans($plugin.':use_js'),
+            'descr' => trans($plugin.':use_js#descr'),
             'type' => 'select',
             'values' => [
                 trans('noa'),
                 trans('yesa'),
 
             ],
-            'value' => (int) setting($plugin, 'modal_support', false),
+            'value' => (int) setting($plugin, 'use_js', true),
 
         ],
-
-    ],
-
+    ]
 ]);
 
 // Если была отправлена форма, то сохраняем настройки.
@@ -116,7 +114,7 @@ if ('commit' === $_REQUEST['action']) {
     if (empty($site_key = trim(secure_html($_POST['site_key']))) or empty($secret_key = trim(secure_html($_POST['secret_key'])))) {
         msg([
             'type' => 'error',
-            'text' => trans($plugin.':msg.not_complete'),
+            'text' => trans($plugin.':error.required_parameters'),
         ]);
 
         return generate_config_page($plugin, $cfg);

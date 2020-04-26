@@ -29,7 +29,7 @@ if (setting('ng-grecaptcha', 'guests_only', true)) {
 $grecaptcha = new Plugins\GRecaptcha\GRecaptcha();
 
 // Если включена поддержка модальных окон.
-if (setting('ng-grecaptcha', 'modal_support', false)) {
+if (setting('ng-grecaptcha', 'use_js', false)) {
     $grecaptcha->registerHtmlVars();
 }
 
