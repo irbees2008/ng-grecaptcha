@@ -110,11 +110,24 @@ array_push($cfg, [
 
 // Если была отправлена форма, то сохраняем настройки.
 if ('commit' === $_REQUEST['action']) {
-    // Валидация входящих параметров.
-    if (empty($site_key = trim(secure_html($_POST['site_key']))) or empty($secret_key = trim(secure_html($_POST['secret_key'])))) {
+    // Валидация входящих обязательных параметров.
+    try {
+        if (empty($site_key = trim(secure_html($_POST['site_key'])))) {
+            throw new \InvalidArgumentException('empty-site-key');
+        }
+
+        if (empty($secret_key = trim(secure_html($_POST['secret_key'])))) {
+            throw new \InvalidArgumentException('empty-secret-key');
+        }
+
+    } catch (\InvalidArgumentException $e) {
+        $message = $e->getMessage();
+
         msg([
             'type' => 'error',
-            'text' => trans($plugin.':error.required_parameters'),
+            'text' => trans("$plugin:error.required_parameters"),
+            'info' => trans("$plugin:error.$message"),
+
         ]);
 
         return generate_config_page($plugin, $cfg);
