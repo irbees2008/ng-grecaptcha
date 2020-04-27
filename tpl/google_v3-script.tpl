@@ -38,8 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Задаем полученный токен полю ввода капчи.
                     input.value = token;
 
-                    alert(token);
-
                     // Отправляем форму.
                     form.submit();
 
