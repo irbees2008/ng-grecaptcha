@@ -4,7 +4,7 @@
 
 ID: ng-grecaptcha
 Type: plugin
-Version: 0.6.2
+Version: 0.6.3
 
 File: ng-grecaptcha.php
 Config: config.php
