@@ -4,7 +4,7 @@
 
 ID: ng-grecaptcha
 Type: plugin
-Version: 0.6.0
+Version: 0.6.1
 
 File: ng-grecaptcha.php
 Config: config.php
@@ -14,8 +14,8 @@ Preinstall: default_no
 Acts: core, comments, comments:add, action.ppages.feedback, feedback, feedback:post
 Library: autoload; vendor/autoload.php
 
-Title: reCAPTCHA v3
-Name: јнти бот
+Title: Google reCAPTCHA v3
+Name: Google reCAPTCHA v3
 Description: «ащита форм сайта от интернет-ботов с Google reCAPTCHA v3. ѕредназначен дл€ плагинов comments, feedback и регистрационной формы.
 Information: «ащита форм сайта от интернет-ботов с Google reCAPTCHA v3. ѕредназначен дл€ плагинов comments, feedback и регистрационной формы.
 

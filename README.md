@@ -55,16 +55,10 @@ composer require russsiq/ng-grecaptcha:dev-windows-1251
 <input type="hidden" name="g-recaptcha-response" value="" />
 ```
 
-В этом же шаблоне добавить в секции `script` между `[not-logged] ... [/not-logged]`:
+В том случае, если вы используете технологию AJAX для отправки комментариев, то вам необходимо добавить значение поля ввода капчи. Например, в этом же шаблоне добавить в секции `script` после `[not-logged] ... [/not-logged]`:
 
 ```javascript
-cajax.setVar("g-recaptcha-response", form['g-recaptcha-response'].value);
-```
-
-Там же, до тегов `[captcha] ... [/captcha]`
-
-```javascript
-grecaptcha_reload();
+cajax.setVar('g-recaptcha-response', form['g-recaptcha-response'].value);
 ```
 
 #### Плагин `feedback`
