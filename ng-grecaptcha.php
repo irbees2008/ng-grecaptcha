@@ -28,7 +28,7 @@ if (setting('ng-grecaptcha', 'guests_only', true)) {
 
 $grecaptcha = new Plugins\GRecaptcha\GRecaptcha();
 
-// Если включена поддержка модальных окон.
+// Если включено формирование переменной `htmlvars`.
 if (setting('ng-grecaptcha', 'use_js', false)) {
     $grecaptcha->registerHtmlVars();
 }
