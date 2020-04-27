@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     [...FORMS].forEach(function(form) {
         // Если форма содержит поле ввода капчи:
         if ('g-recaptcha-response' in form.elements) {
+            // Форма комментариев по умолчанию содержит атрибут `onsubmit`.
+            // Для демонстрации работоспособности капчи
+            // пересохраним значение этого атрибута.
+            if (form.hasAttribute('onsubmit')) {
+                form.setAttribute('data-onsubmit', form.getAttribute('onsubmit'))
+                form.removeAttribute('onsubmit');
+            }
+
             // то вешаем обработчик события отправки формы.
             form.addEventListener('submit', attachGRecaptchaToken);
         }
@@ -38,9 +46,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Задаем полученный токен полю ввода капчи.
                     input.value = token;
 
-                    // Отправляем форму.
-                    form.submit();
-
+                    // Форма комментариев по умолчанию содержит атрибут `onsubmit`.
+                    // Для демонстрации работоспособности капчи
+                    // выполняем сохраненное значение этого атрибута.
+                    if (form.hasAttribute('data-onsubmit')) {
+                        (new Function(form.getAttribute('data-onsubmit')))();
+                    }
+                    // В остальных случаях просто отправляем форму.
+                    else {
+                        form.submit();
+                    }
                 }, function (reason) {
                     console.log(reason);
                 });
