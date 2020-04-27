@@ -46,14 +46,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Задаем полученный токен полю ввода капчи.
                     input.value = token;
 
+                    let result = true;
+
                     // Форма комментариев по умолчанию содержит атрибут `onsubmit`.
                     // Для демонстрации работоспособности капчи
                     // выполняем сохраненное значение этого атрибута.
                     if (form.hasAttribute('data-onsubmit')) {
-                        (new Function(form.getAttribute('data-onsubmit')))();
+                        result = (new Function(form.getAttribute('data-onsubmit')))();
                     }
+
                     // В остальных случаях просто отправляем форму.
-                    else {
+                    if (result) {
                         form.submit();
                     }
                 }, function (reason) {
