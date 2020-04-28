@@ -32,7 +32,7 @@ class GRecaptcha
      * Номер версии плагина.
      * @const string
      */
-    const VERSION = '0.7.0';
+    const VERSION = '0.7.1';
 
     /**
      * Идентификатор плагина.
