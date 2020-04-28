@@ -10,15 +10,15 @@ if (! getPluginStatusActive('ng-helpers')) {
     return false;
 }
 
+// Если помощники активированы,
+// но по каким-то причинам не были подгружены.
+load_extras('core', 'ng-helpers');
+
 // Подгрузка библиотек-файлов плагина.
 loadPluginLibrary('ng-grecaptcha', 'autoload');
 
 // Подгрузка языкового файла плагина.
 LoadPluginLang('ng-grecaptcha', 'main', '', '', ':');
-
-// Если помощники активированы,
-// но по каким-то причинам не были подгружены.
-load_extras('core', 'ng-helpers');
 
 // Плагин использует отрисовку шаблонов, подгружаем трейт.
 loadPluginLibrary('ng-helpers', 'renderable');
