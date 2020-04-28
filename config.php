@@ -79,7 +79,7 @@ array_push($cfg, [
                 trans('yesa'),
 
             ],
-            'value' => (int) setting($plugin, 'guests_only', true),
+            'value' => (int) setting($plugin, 'guests_only', false),
 
         ],
 
