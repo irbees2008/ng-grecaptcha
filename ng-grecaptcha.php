@@ -5,6 +5,11 @@ if (!defined('NGCMS')) {
     die('HAL');
 }
 
+// Если не активированы помощники, то выходим.
+if (! getPluginStatusActive('ng-helpers')) {
+    return false;
+}
+
 // Подгрузка библиотек-файлов плагина.
 loadPluginLibrary('ng-grecaptcha', 'autoload');
 
