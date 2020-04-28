@@ -11,6 +11,8 @@
  - PHP >= 7.0.0
  - [russsiq/ng-helpers](https://github.com/russsiq/ng-helpers)
 
+> Плагин **russsiq/ng-helpers** должен быть обязательно включен.
+
 ### Подключение
 
 > Перед обновлением плагина, отключите его в панели управлении.
