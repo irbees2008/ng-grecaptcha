@@ -5,6 +5,7 @@ namespace Plugins\GRecaptcha\Filters;
 // Сторонние зависимости.
 use FeedbackFilter;
 use Plugins\GRecaptcha\GRecaptcha;
+use function Plugins\dd;
 
 class GRecaptchaFeedbackFilter extends FeedbackFilter
 {
@@ -21,7 +22,7 @@ class GRecaptchaFeedbackFilter extends FeedbackFilter
 
     public function onShow($formID, $formStruct, $formData, &$tvars)
     {
-        return $this->recaptcha->registerHtmlVars();
+
     }
 
     public function onProcessEx($formID, $formStruct, $formData, $flagHTML, &$tVars, &$tResult)

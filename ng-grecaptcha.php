@@ -15,6 +15,7 @@ LoadPluginLang('ng-grecaptcha', 'main', '', '', ':');
 loadPluginLibrary('ng-helpers', 'renderable');
 
 // Используем функции из пространства `Plugins`.
+use function Plugins\dd;
 use function Plugins\setting;
 
 // Проверяем, что капчу нужно использовать только для гостей сайта.
@@ -28,10 +29,11 @@ if (setting('ng-grecaptcha', 'guests_only', true)) {
 
 $grecaptcha = new Plugins\GRecaptcha\GRecaptcha();
 
-// Если включено формирование переменной `htmlvars`.
-if (setting('ng-grecaptcha', 'use_js', false)) {
-    $grecaptcha->registerHtmlVars();
-}
+// Добавление JavaScript API в переменную `htmlvars`.
+$grecaptcha->registerAPIJavaScript();
+
+// Добавление JavaScript из шаблона в переменную `htmlvars`.
+$grecaptcha->registerAttachJavaScript();
 
 pluginRegisterFilter('core.registerUser', 'ng-grecaptcha', new Plugins\GRecaptcha\Filters\GRecaptchaCoreFilter($grecaptcha));
 

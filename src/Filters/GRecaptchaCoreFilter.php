@@ -21,7 +21,7 @@ class GRecaptchaCoreFilter extends CoreFilter
 
     public function registerUserForm(&$tvars)
     {
-        return $this->recaptcha->registerHtmlVars();
+
     }
 
     public function registerUser($params, &$msg)

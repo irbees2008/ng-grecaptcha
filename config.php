@@ -93,16 +93,28 @@ array_push($cfg, [
     'title' => trans($plugin.':group_htmlvars'),
     'entries' => [
         [
-            'name' => 'use_js',
-            'title' => trans($plugin.':use_js'),
-            'descr' => trans($plugin.':use_js#descr'),
+            'name' => 'use_api_js',
+            'title' => trans($plugin.':use_api_js'),
+            'descr' => trans($plugin.':use_api_js#descr'),
             'type' => 'select',
             'values' => [
                 trans('noa'),
                 trans('yesa'),
 
             ],
-            'value' => (int) setting($plugin, 'use_js', true),
+            'value' => (int) setting($plugin, 'use_api_js', true),
+
+        ], [
+            'name' => 'use_attach_js',
+            'title' => trans($plugin.':use_attach_js'),
+            'descr' => trans($plugin.':use_attach_js#descr'),
+            'type' => 'select',
+            'values' => [
+                trans('noa'),
+                trans('yesa'),
+
+            ],
+            'value' => (int) setting($plugin, 'use_attach_js', true),
 
         ],
     ]

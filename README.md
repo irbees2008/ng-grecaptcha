@@ -41,6 +41,18 @@ composer require russsiq/ng-grecaptcha:dev-windows-1251
 
 Теперь на вашем сайте в правом нижнем углу информационный блок от reCAPTCHA.
 
+При использовании опции **Встраивать на страницу файл JavaScript из шаблона**, вы можете отслеживать действия пользователей, разграничивая их в [консоли администрирования](https://g.co/recaptcha/admin/). Для этого необходимо к каждой из форм добавлять соответствующий идентификатор.
+
+Например, для формы регистрации пользователей это может выглядеть так:
+
+```html
+<!-- \templates\ВАШ_ШАБЛОН\registration.tpl -->
+
+<form id="register_user" ...>
+    <!-- Остальной код формы -->
+</form>
+```
+
 ### Использование
 
 #### Плагин `comments`
@@ -53,7 +65,9 @@ composer require russsiq/ng-grecaptcha:dev-windows-1251
 <input type="hidden" name="g-recaptcha-response" value="" />
 ```
 
-В том случае, если вы используете технологию AJAX для отправки комментариев, то вам необходимо добавить значение поля ввода капчи. Например, в этом же шаблоне добавить в секции `script` после `[not-logged] ... [/not-logged]`:
+В том случае, если вы используете технологию AJAX для отправки комментариев, то вам необходимо добавить значение поля ввода капчи до того, как будет отправлен AJAX запрос вашим JavaScript.
+
+Например, в этом же шаблоне добавить в секции `script` после `[not-logged] ... [/not-logged]`:
 
 ```javascript
 cajax.setVar('g-recaptcha-response', form['g-recaptcha-response'].value);
@@ -66,9 +80,7 @@ cajax.setVar('g-recaptcha-response', form['g-recaptcha-response'].value);
 ```html
 <!-- \templates\ВАШ_ШАБЛОН\plugins\feedback\site.form.tpl -->
 
-{% if not global.flags.isLogged %}
-    <input type="hidden" name="g-recaptcha-response" value="" />
-{% endif %}
+<input type="hidden" name="g-recaptcha-response" value="" />
 ```
 
 #### Регистрационная форма
@@ -86,9 +98,7 @@ cajax.setVar('g-recaptcha-response', form['g-recaptcha-response'].value);
 Для использования в формах модальных окон, отредактируйте шаблон формы, добавив скрытое поле перед закрывающим тегом `</form>`:
 
 ```html
-{% if not global.flags.isLogged %}
-    <input type="hidden" name="g-recaptcha-response" value="" />
-{% endif %}
+<input type="hidden" name="g-recaptcha-response" value="" />
 ```
 
 ### Лицензия

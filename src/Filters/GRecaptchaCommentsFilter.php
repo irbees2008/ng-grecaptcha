@@ -5,6 +5,7 @@ namespace Plugins\GRecaptcha\Filters;
 // Сторонние зависимости.
 use FilterComments;
 use Plugins\GRecaptcha\GRecaptcha;
+use function Plugins\dd;
 
 class GRecaptchaCommentsFilter extends FilterComments
 {
@@ -21,7 +22,7 @@ class GRecaptchaCommentsFilter extends FilterComments
 
     public function addCommentsForm($newsID, &$tvars)
     {
-        return $this->recaptcha->registerHtmlVars();
+
     }
 
     public function addComments($userRec, $newsRec, &$tvars, &$SQL)

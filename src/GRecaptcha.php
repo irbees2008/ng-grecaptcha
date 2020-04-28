@@ -87,6 +87,12 @@ class GRecaptcha
     ];
 
     /**
+     * Маркер того, что уже был прикреплен JavaScript-перехватчик форм.
+     * @var bool
+     */
+    protected $attachedJavascript;
+
+    /**
      * Сообщение о причине отказа выполнения действия.
      * @var array
      */
@@ -132,30 +138,35 @@ class GRecaptcha
         return $this;
     }
 
-    public function registerHtmlVars()
+    /**
+     * Добавление JavaScript API в переменную `htmlvars`.
+     * @return void
+     */
+    public function registerAPIJavaScript(): void
     {
-        if (empty($this->siteKey)) {
-            return false;
+        if (setting($this->plugin, 'use_api_js', true)) {
+            register_htmlvar('js', $this->apiRender.$this->siteKey);
         }
-
-        register_htmlvar('plain', $this->script());
-
-        return true;
     }
 
     /**
-     * Получить проанализированное HTML строковое представление
-     * JavaScript'ов капчи.
-     * @return string
+     * Добавление JavaScript из шаблона в переменную `htmlvars`.
+     * @param  string  $action  Действие, выполняемое пользователем.
+     * @return void
      */
-    protected function script(string $action = 'send_form'): string
+    public function registerAttachJavaScript(string $action = 'send_form'): void
     {
-        return $this->view('google_v3-script', [
+        // Если включено формирование переменной `htmlvars`.
+        if (setting($this->plugin, 'use_attach_js', true) && ! $this->attachedJavascript) {
+            register_htmlvar('plain', $this->view('google_v3-script', [
                 'api_render' => $this->apiRender,
                 'site_key' => $this->siteKey,
                 'action' => $action,
 
-            ]);
+            ]));
+
+            $this->attachedJavascript = true;
+        }
     }
 
     public function verifying()
