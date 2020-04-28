@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit1f2e61ecfd7c8fc8cfdd08e284c8d39e
+class ComposerStaticInit14d82d1cce5e28c3a786b25950da4a03
 {
     public static $prefixLengthsPsr4 = array (
         'P' => 
@@ -21,6 +21,8 @@ class ComposerStaticInit1f2e61ecfd7c8fc8cfdd08e284c8d39e
     );
 
     public static $classMap = array (
+        'Plugins\\GRecaptcha\\Exceptions\\MissingVariableException' => __DIR__ . '/../..' . '/src/Exceptions/MissingVariableException.php',
+        'Plugins\\GRecaptcha\\Exceptions\\VerificationFailedException' => __DIR__ . '/../..' . '/src/Exceptions/VerificationFailedException.php',
         'Plugins\\GRecaptcha\\Filters\\GRecaptchaCommentsFilter' => __DIR__ . '/../..' . '/src/Filters/GRecaptchaCommentsFilter.php',
         'Plugins\\GRecaptcha\\Filters\\GRecaptchaCoreFilter' => __DIR__ . '/../..' . '/src/Filters/GRecaptchaCoreFilter.php',
         'Plugins\\GRecaptcha\\Filters\\GRecaptchaFeedbackFilter' => __DIR__ . '/../..' . '/src/Filters/GRecaptchaFeedbackFilter.php',
@@ -30,9 +32,9 @@ class ComposerStaticInit1f2e61ecfd7c8fc8cfdd08e284c8d39e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit1f2e61ecfd7c8fc8cfdd08e284c8d39e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit1f2e61ecfd7c8fc8cfdd08e284c8d39e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit1f2e61ecfd7c8fc8cfdd08e284c8d39e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit14d82d1cce5e28c3a786b25950da4a03::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit14d82d1cce5e28c3a786b25950da4a03::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit14d82d1cce5e28c3a786b25950da4a03::$classMap;
 
         }, null, ClassLoader::class);
     }
