@@ -4,8 +4,10 @@ namespace Plugins\GRecaptcha;
 
 // Исключения.
 use Exception;
-use InvalidArgumentException;
 use RuntimeException;
+use Throwable;
+use Plugins\GRecaptcha\Exceptions\MissingVariableException;
+use Plugins\GRecaptcha\Exceptions\VerificationFailedException;
 
 // Базовые расширения PHP.
 use stdClass;
@@ -144,7 +146,10 @@ class GRecaptcha
      */
     public function registerAPIJavaScript(): void
     {
-        if (setting($this->plugin, 'use_api_js', true)) {
+        if (
+            $this->siteKey
+            && setting($this->plugin, 'use_api_js', true)
+        ) {
             register_htmlvar('js', $this->apiRender.$this->siteKey);
         }
     }
@@ -157,7 +162,11 @@ class GRecaptcha
     public function registerAttachJavaScript(string $action = 'send_form'): void
     {
         // Если включено формирование переменной `htmlvars`.
-        if (setting($this->plugin, 'use_attach_js', true) && ! $this->attachedJavascript) {
+        if (
+            $this->siteKey
+            && setting($this->plugin, 'use_attach_js', true)
+            && ! $this->attachedJavascript
+        ) {
             register_htmlvar('plain', $this->view('google_v3-script', [
                 'api_render' => $this->apiRender,
                 'site_key' => $this->siteKey,
@@ -177,21 +186,28 @@ class GRecaptcha
             $verified = $this->touchAnswer();
 
             if (! $verified->success) {
-                throw new InvalidArgumentException(
+                throw new VerificationFailedException(
                     array_shift($verified->{'error-codes'})
                 );
             }
 
             if ($verified->score < $this->score) {
-                throw new InvalidArgumentException('low-score');
+                throw VerificationFailedException::lowScore();
             }
 
             return true;
 
-        } catch (InvalidArgumentException $e) {
+        } catch (MissingVariableException $e) {
             $this->rejectionReason = $e->getMessage();
 
             return false;
+        } catch (VerificationFailedException $e) {
+            $this->rejectionReason = $e->getMessage();
+
+            return false;
+        } catch (Throwable $e) {
+
+            throw $e;
         }
     }
 
@@ -204,7 +220,7 @@ class GRecaptcha
         } elseif (ini_get('allow_url_fopen')) {
             $answer = $this->getFopenAnswer($query);
         } else {
-            throw new Exception(
+            throw new RuntimeException(
                 'Not supported: cURL, allow_fopen_url.'
             );
         }
@@ -212,7 +228,7 @@ class GRecaptcha
         $answer = json_decode($answer);
 
         if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new Exception('JSON answer error.');
+            throw new RuntimeException('JSON answer error.');
         }
 
         return $answer;
@@ -230,7 +246,7 @@ class GRecaptcha
     {
         $ch = curl_init();
         if (curl_errno($ch) != 0) {
-            throw new Exception(
+            throw new RuntimeException(
                 'err_curl_'.curl_errno($ch).' '.curl_error($ch)
             );
         }
@@ -240,14 +256,14 @@ class GRecaptcha
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $answer = curl_exec($ch);
-        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        if (404 == $status) {
-            throw new Exception(
+        if (404 === $status) {
+            throw new RuntimeException(
                 'Source file not found.'
             );
-        } elseif ($status != 200) {
-            throw new Exception(
+        } elseif ($status !== 200) {
+            throw new RuntimeException(
                 'err_curl_'.$status
             );
         }
@@ -278,15 +294,15 @@ class GRecaptcha
     protected function ensureNecessaryVariables()
     {
         if (empty($this->siteKey)) {
-            throw new InvalidArgumentException('empty-site-key');
+            throw MissingVariableException::siteKey();
         }
 
         if (empty($this->secretKey)) {
-            throw new InvalidArgumentException('empty-secret-key');
+            throw MissingVariableException::secretKey();
         }
 
         if (empty($this->userToken)) {
-            throw new InvalidArgumentException('missing-input-response');
+            throw MissingVariableException::inputResponse();
         }
     }
 }
