@@ -8,33 +8,29 @@
 
 Перед использованием плагина вам необходимо убедиться, что ваш сервер соответствует следующим требованиям:
 
- - PHP >= 7.0.0
- - [russsiq/ng-helpers](https://github.com/russsiq/ng-helpers)
+ - PHP ^7.3|^8.0
+ - [irbees2008/ng-helpers](https://github.com/irbees2008/ng-helpers)
 
-> Плагин **russsiq/ng-helpers** должен быть обязательно включен.
+> Плагин **irbees2008/ng-helpers** должен быть обязательно включен.
 
 ### Подключение
 
- > Перед обновлением плагина, отключите его в панели управлении. По желанию, старую версию также можно удалить с сервера.
+ > Перед обновлением плагина, отключите его в панели управлении. Старую версию также нужно удалить с сервера.
  >
- > Те же самые манипуляции относятся и к старой версии плагина [ggg_recaptcha](http://ngcms.ru/forum/viewtopic.php?pid=44202#p44202).
+ > Те же самые манипуляции относятся и к старой версии плагина `ggg_recaptcha`.
 
 Плагин выпускается в двух вариациях, каждая из которых поддерживает свой тип кодировки: UTF-8 и Windows-1251. Для подключения вы можете просто скачать плагин в необходимой для вашего проекта кодировке:
 
- - [UTF-8](https://codeload.github.com/russsiq/ng-grecaptcha/zip/master)
- - [Windows-1251](https://codeload.github.com/russsiq/ng-grecaptcha/zip/windows-1251)
+ - [UTF-8](https://codeload.github.com/irbees2008/ng-grecaptcha/zip/master)
+ - [Windows-1251](https://codeload.github.com/irbees2008/ng-grecaptcha/zip/windows-1251)
 
-Либо воспользуйтесь менеджером Composer:
-
-```bash
-composer require russsiq/ng-grecaptcha:dev-master
-```
-
- > Обратите внимание, что кодировка UTF-8 является основной. Вы можете указать кодировку Windows-1251:
+<!-- Либо воспользуйтесь менеджером Composer:
 
 ```bash
-composer require russsiq/ng-grecaptcha:dev-windows-1251
-```
+composer require irbees2008/ng-grecaptcha
+``` -->
+
+ > Обратите внимание, что кодировка UTF-8 является основной.
 
 ### Настройка
 
@@ -107,4 +103,4 @@ cajax.setVar('g-recaptcha-response', form['g-recaptcha-response'].value);
 
 ### Лицензия
 
-`ng-grecaptcha` - программное обеспечение с открытым исходным кодом, распространяющееся по лицензии [MIT](https://choosealicense.com/licenses/mit/).
+`ng-grecaptcha` - программное обеспечение с открытым исходным кодом, распространяющееся по лицензии [MIT](LICENSE).
