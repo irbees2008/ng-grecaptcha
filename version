@@ -4,14 +4,14 @@
 
 ID: ng-grecaptcha
 Type: plugin
-Version: 0.7.2
+Version: 0.8.0
 
 File: ng-grecaptcha.php
 Config: config.php
 ; Install: install.php
 ; Deinstall: deinstall.php
 Preinstall: default_no
-Acts: core, comments, comments:add, action.ppages.feedback, feedback, feedback:post
+Acts: index, comments, comments:add, action.ppages.feedback, feedback, feedback:post
 Library: autoload; vendor/autoload.php
 
 Title: Google reCAPTCHA v3

@@ -9,7 +9,7 @@ if (! defined('NGCMS')) {
 $plugin = 'ng-grecaptcha';
 
 // Подгрузка библиотек-файлов плагина.
-plugins_load_config();
+pluginsLoadConfig();
 LoadPluginLang($plugin, 'config', '', '', ':');
 
 // Используем функции из пространства `Plugins`.
