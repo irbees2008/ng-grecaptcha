@@ -1,0 +1,54 @@
+{
+    "packages": [
+        {
+            "name": "irbees2008/ng-helpers",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/irbees2008/ng-helpers.git",
+                "reference": "f7af6a51a6320c5aba89f3588500749ff78300fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/irbees2008/ng-helpers/zipball/f7af6a51a6320c5aba89f3588500749ff78300fa",
+                "reference": "f7af6a51a6320c5aba89f3588500749ff78300fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "time": "2021-06-21T14:16:17+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Plugins\\Traits\\": "src/Traits/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Рустам Гимранов",
+                    "email": "rustam_gimranov@mail.ru",
+                    "homepage": "https://github.com/russsiq",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Коллекция вспомогательных функций для плагинов системы NGCMS",
+            "support": {
+                "source": "https://github.com/irbees2008/ng-helpers/tree/master"
+            },
+            "install-path": "../irbees2008/ng-helpers"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

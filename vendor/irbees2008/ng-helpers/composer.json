@@ -1,0 +1,28 @@
+{
+    "name": "irbees2008/ng-helpers",
+    "description": "Коллекция вспомогательных функций для плагинов системы NGCMS",
+    "type": "library",
+    "license": "MIT",
+    "authors": [{
+        "name": "Рустам Гимранов",
+        "email": "rustam_gimranov@mail.ru",
+        "homepage": "https://github.com/russsiq",
+        "role": "Developer"
+    }],
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/irbees2008/ng-helpers"
+    }],
+    "require": {
+        "php": "^7.3|^8.0"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Plugins\\Traits\\": "src/Traits/"
+        }
+    },
+    "minimum-stability": "dev"
+}

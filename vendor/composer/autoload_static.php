@@ -6,14 +6,23 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit14d82d1cce5e28c3a786b25950da4a03
 {
+    public static $files = array (
+        '35f0ab782ad20450612f86df0581a7cf' => __DIR__ . '/..' . '/irbees2008/ng-helpers/src/helpers.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
+            'Plugins\\Traits\\' => 15,
             'Plugins\\GRecaptcha\\' => 19,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Plugins\\Traits\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/irbees2008/ng-helpers/src/Traits',
+        ),
         'Plugins\\GRecaptcha\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
@@ -21,12 +30,7 @@ class ComposerStaticInit14d82d1cce5e28c3a786b25950da4a03
     );
 
     public static $classMap = array (
-        'Plugins\\GRecaptcha\\Exceptions\\MissingVariableException' => __DIR__ . '/../..' . '/src/Exceptions/MissingVariableException.php',
-        'Plugins\\GRecaptcha\\Exceptions\\VerificationFailedException' => __DIR__ . '/../..' . '/src/Exceptions/VerificationFailedException.php',
-        'Plugins\\GRecaptcha\\Filters\\GRecaptchaCommentsFilter' => __DIR__ . '/../..' . '/src/Filters/GRecaptchaCommentsFilter.php',
-        'Plugins\\GRecaptcha\\Filters\\GRecaptchaCoreFilter' => __DIR__ . '/../..' . '/src/Filters/GRecaptchaCoreFilter.php',
-        'Plugins\\GRecaptcha\\Filters\\GRecaptchaFeedbackFilter' => __DIR__ . '/../..' . '/src/Filters/GRecaptchaFeedbackFilter.php',
-        'Plugins\\GRecaptcha\\GRecaptcha' => __DIR__ . '/../..' . '/src/GRecaptcha.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
