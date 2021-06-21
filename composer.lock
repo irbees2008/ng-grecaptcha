@@ -1,0 +1,68 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "802ef8af01234f683d74b52cf7f30621",
+    "packages": [
+        {
+            "name": "irbees2008/ng-helpers",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/irbees2008/ng-helpers.git",
+                "reference": "f7af6a51a6320c5aba89f3588500749ff78300fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/irbees2008/ng-helpers/zipball/f7af6a51a6320c5aba89f3588500749ff78300fa",
+                "reference": "f7af6a51a6320c5aba89f3588500749ff78300fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Plugins\\Traits\\": "src/Traits/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Рустам Гимранов",
+                    "email": "rustam_gimranov@mail.ru",
+                    "homepage": "https://github.com/russsiq",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Коллекция вспомогательных функций для плагинов системы NGCMS",
+            "support": {
+                "source": "https://github.com/irbees2008/ng-helpers/tree/master"
+            },
+            "time": "2021-06-21T14:16:17+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "irbees2008/ng-helpers": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "^7.3|^8.0"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}

@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Plugins\\Traits\\' => array($vendorDir . '/irbees2008/ng-helpers/src/Traits'),
     'Plugins\\GRecaptcha\\' => array($baseDir . '/src'),
 );

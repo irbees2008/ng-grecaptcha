@@ -1,0 +1,21 @@
+;
+; Version description file for plugin @@ Next Generation CMS
+;
+
+ID: ng-helpers
+Type: plugin
+Version: 0.2.0
+Permanent: yes
+Preinstall: default_yes
+
+File: src/helpers.php
+Acts: core
+Library: renderable; src/Traits/Renderable.php
+
+Title: Хелперы NGCMS
+Name: Хелперы NGCMS
+Description: Коллекция вспомогательных функций для плагинов системы NGCMS.
+Information: Коллекция вспомогательных функций для плагинов системы NGCMS.
+
+Author: rusiq
+Author_URI: 
