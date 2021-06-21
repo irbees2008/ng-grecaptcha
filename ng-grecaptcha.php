@@ -12,7 +12,7 @@ if (! getPluginStatusActive('ng-helpers')) {
 
 // Если помощники активированы,
 // но по каким-то причинам не были подгружены.
-load_extras('core', 'ng-helpers');
+loadActionHandlers('core', 'ng-helpers');
 
 // Подгрузка библиотек-файлов плагина.
 loadPluginLibrary('ng-grecaptcha', 'autoload');
